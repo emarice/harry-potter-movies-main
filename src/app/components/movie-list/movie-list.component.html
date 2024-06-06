@@ -1,0 +1,16 @@
+<mat-list>
+    @for (movie of movieService.movies(); track movie) {
+        <mat-list-item>
+            <div matListItemTitle>{{movie.title}}</div>
+            <div matListItemLine>
+                <span class="me-2">Release date: {{movie.release_date}}</span>
+                <span class="me-2">Budget: ${{movie.budget}} million</span>
+                <span>Duration: {{movie.duration | time}}</span>
+            </div>
+            <div class="h-100 d-flex align-items-center" matListItemMeta>
+                <button mat-stroked-button color="primary" [id]="movie.id">Details</button>
+            </div>
+        </mat-list-item>
+        <mat-divider/>
+    }
+</mat-list>
