@@ -1,1 +1,17 @@
-<p>movie-filter works!</p>
+<div class="row mt-3">
+    <div class="col-12">
+        <h2>Filters</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <mat-form-field class="me-3">
+            <mat-label>Title</mat-label>
+            <input matInput [formControl]="titleControl">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Release year</mat-label>
+            <input matInput [formControl]="releaseControl">
+        </mat-form-field>
+    </div>
+</div>

@@ -3,5 +3,5 @@ export interface Movie {
     title: string;
     duration: string;
     budget: string;
-    release_date: Date | string;
+    release_date: string;
 }

@@ -1,1 +1,55 @@
-<p>movie-detail works!</p>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col">
+            <button mat-stroked-button color="primary" [routerLink]="['/']"><mat-icon class="me-1">home</mat-icon>Back</button>
+        </div>
+    </div>
+    @if (movieDetails) {
+    <div class="row mt-3">
+        <h1><strong>{{movieDetails.title}}</strong></h1>
+    </div>
+    <div class="row">
+        <div class="col px-0 d-flex flex-row">
+            <img [src]="movieDetails.poster" alt="movie poster" width="200" />
+            <p class="mt-2"><strong>Summary:</strong> {{movieDetails.summary}}</p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col d-flex justify-content-center">
+            <h1>Details</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                  <tr>
+                    <th class="header">Box office</th>
+                    <td>{{movieDetails.box_office | million}}</td>
+                  </tr>
+                  <tr>
+                    <th class="header">Budget</th>
+                    <td>{{movieDetails.budget | million}}</td>
+                  </tr>
+                  <tr>
+                    <th class="header">Duration</th>
+                    <td>{{movieDetails.duration | time}}</td>
+                  </tr>
+                  <tr>
+                    <th class="header">Producers</th>
+                    <td>{{movieDetails.producers.join(', ')}}</td>
+                  </tr>
+                  <tr>
+                    <th class="header">Cinematographers</th>
+                    <td>{{movieDetails.cinematographers.join(', ')}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+        </div>
+    </div>
+    }
+    @else {
+    <span><i>Loading movie info...</i></span>
+    }
+</div>
