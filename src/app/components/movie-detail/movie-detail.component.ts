@@ -18,10 +18,10 @@ export class MovieDetailComponent {
   movieDetails!: MovieDetail;
 
   constructor(private route: ActivatedRoute) {
+    //subscribing from the navigation resolution to get the resolver data
     route.data.subscribe({
       next: (result: RouteResolve) => {
         this.movieDetails = result.details;
-        this.movieDetails.producers
       },
     });
   }

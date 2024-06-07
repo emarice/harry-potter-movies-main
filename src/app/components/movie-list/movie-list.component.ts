@@ -15,5 +15,6 @@ import { MillionPipe } from '../../pipes/million.pipe';
   styleUrl: './movie-list.component.css',
 })
 export class MovieListComponent {
+  //injecting MovieService to access the movie list signal value from template
   movieService = inject(MovieService);
 }

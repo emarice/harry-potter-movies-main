@@ -9,10 +9,16 @@ import { MovieDetail } from '../types/movie-detail';
   providedIn: 'root',
 })
 export class MovieService {
+
+  //Declaring the API URI
   private API_ENDPOINT: string = 'http://localhost:4200';
 
+  //Injecting HttpClient
   constructor(private http: HttpClient) {}
 
+  //#region Filters declaration
+
+  //Declaring the filters signals with their own getters and setters to expose them as readonly signal
   private titleFilterSignal = signal('');
   private releaseFilterSignal = signal('');
 
@@ -32,8 +38,12 @@ export class MovieService {
     this.releaseFilterSignal.set(value);
   }
 
+  //#endregion
+
+  //Converting the observable from the API call into a signal using the toSignal in order to subscribe to the call
   private getMovies$: Observable<Movie[]> = this.getMovies();
-  moviesList: Signal<Movie[]> = toSignal<Movie[]>(this.getMovies$);
+  private moviesList: Signal<Movie[]> = toSignal<Movie[]>(this.getMovies$);
+  //Computing the moviesList signal to expose only the movies that satisfy the filter conditions
   movies: Signal<Movie[] | undefined> = computed(() =>
     this.filterMovies(this.moviesList)
   );
@@ -59,6 +69,9 @@ export class MovieService {
         )
       : [];
   }
+
+  //#region API calls
+
   private getMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${this.API_ENDPOINT}/movies`).pipe(takeUntilDestroyed());
   }
@@ -66,4 +79,6 @@ export class MovieService {
   getMovieDetails(id: string) {
     return this.http.get<MovieDetail>(`${this.API_ENDPOINT}/movies/${id}`).pipe(takeUntilDestroyed());
   }
+
+  //#endregion
 }

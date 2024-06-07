@@ -1,13 +1,16 @@
 <mat-list>
+    <!-- Cycling through all the movies listed in the movie signal to display them -->
     @for (movie of movieService.movies(); track movie) {
         <mat-list-item>
             <div matListItemTitle>{{movie.title}}</div>
             <div matListItemLine>
                 <span class="me-2">Release date: {{movie.release_date}}</span>
+                <!-- Using pipes to displat the movie budget from {number} to ${number} million and minutes to hours and minutes -->
                 <span class="me-2">Budget: {{movie.budget | million}}</span>
                 <span>Duration: {{movie.duration | time}}</span>
             </div>
             <div class="h-100 d-flex align-items-center" matListItemMeta>
+                <!-- Button used to navigate into the movie details page using angular routing strategy -->
                 <button mat-stroked-button color="primary" [id]="movie.id" [routerLink]="['/movies', movie.id]">Details</button>
             </div>
         </mat-list-item>
