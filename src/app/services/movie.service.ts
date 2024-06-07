@@ -77,7 +77,7 @@ export class MovieService {
     return this.http.get<Movie[]>(`${this.API_ENDPOINT}/movies`).pipe(takeUntilDestroyed());
   }
 
-  getMovieDetails(id: string) {
+  getMovieDetails(id: string): Observable<MovieDetail> {
     return this.http.get<MovieDetail>(`${this.API_ENDPOINT}/movies/${id}`).pipe(takeUntilDestroyed());
   }
 
