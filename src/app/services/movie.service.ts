@@ -4,6 +4,7 @@ import { Movie } from '../types/movie';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Observable } from 'rxjs';
 import { MovieDetail } from '../types/movie-detail';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { MovieDetail } from '../types/movie-detail';
 export class MovieService {
 
   //Declaring the API URI
-  private API_ENDPOINT: string = 'http://localhost:4200';
+  private API_ENDPOINT: string = environment.baseUrl;
 
   //Injecting HttpClient
   constructor(private http: HttpClient) {}
